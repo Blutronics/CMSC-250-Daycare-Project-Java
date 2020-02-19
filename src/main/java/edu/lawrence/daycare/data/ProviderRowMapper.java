@@ -13,8 +13,8 @@ public class ProviderRowMapper implements RowMapper<Provider> {
         p.setAddress(row.getString("address"));
         p.setCity(row.getString("city"));
         p.setCapacity(row.getInt("capacity"));
-        p.setMinAge(row.getString("minAge"));
-        p.setMaxAge(row.getString("maxAge"));
+        p.setMinAge(row.getInt("minAge"));
+        p.setMaxAge(row.getInt("maxAge"));
         return p;
     }
 }

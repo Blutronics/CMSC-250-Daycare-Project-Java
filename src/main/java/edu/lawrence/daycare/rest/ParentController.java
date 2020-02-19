@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Khanh Toan
  */
 @RestController
-@RequestMapping("/parent")
+@RequestMapping("/parents")
 @CrossOrigin(origins = "*")
 public class ParentController {
 
@@ -31,12 +31,12 @@ public class ParentController {
         this.parentDAO = dao;
     }
 
-    @GetMapping(params = {"user"})
-    public Parent findId(@RequestParam(value = "user") int user) {
+    @GetMapping(params = {"iduser"})
+    public Parent findId(@RequestParam(value = "iduser") int user) {
         Parent parent = parentDAO.findById(user);
         return parent;
 
-    } 
+    }
 
     @PostMapping
     public int save(@RequestBody Parent parent) {

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.lawrence.daycare.data.*;
 
 @RestController
-@RequestMapping("/providers")
+@RequestMapping("/provider")
 @CrossOrigin(origins="*")
 public class ProviderController {
 private ProviderDAO providerDAO;

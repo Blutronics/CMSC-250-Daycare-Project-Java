@@ -5,7 +5,7 @@
  */
 package edu.lawrence.daycare.data;
 
-import java.util.Date;
+import java.sql.Date;
 import java.time.LocalDate;
 /**
  *
@@ -16,7 +16,7 @@ public class Child {
     private int id;
     private int parentID;
     private String name;
-    private Date birthday = new Date();
+    private Date birthday;
 
     public Child() {
     }

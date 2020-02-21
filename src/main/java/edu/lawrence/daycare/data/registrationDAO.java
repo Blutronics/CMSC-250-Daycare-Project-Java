@@ -32,8 +32,8 @@ public class registrationDAO {
                     PreparedStatement ps = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
                     ps.setInt(1, r.getChildID());
                     ps.setInt(2, r.getParentID());
-                    ps.setDate(3,convertJavaDateToSqlDate(r.getStart()));
-                    ps.setDate(4,convertJavaDateToSqlDate(r.getEnd()));
+                    ps.setDate(3,r.getStart());
+                    ps.setDate(4,r.getEnd());
                     ps.setInt(5, r.getStatus());
                     return ps;
                 }, keyHolder);

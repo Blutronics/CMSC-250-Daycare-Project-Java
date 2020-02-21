@@ -7,6 +7,8 @@ package edu.lawrence.daycare.rest;
 
 import edu.lawrence.daycare.data.Child;
 import edu.lawrence.daycare.data.ChildDAO;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,9 +39,10 @@ public class ChildController {
     }
 
     @GetMapping(params = {"parent"})
-    public Child findId(@RequestParam(value = "parent") int parentID) {
-        Child parent = childDAO.findByParentId(parentID);
-        return parent;
+    public List<Child> findId(@RequestParam(value = "parent") int parentID) {
+        List<Child> result = new ArrayList<Child>();
+        result = childDAO.findByParentId(parentID);
+        return result;
     }
 
     @PutMapping

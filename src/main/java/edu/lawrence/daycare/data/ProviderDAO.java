@@ -31,18 +31,19 @@ public class ProviderDAO {
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 
-    public List<Provider> findByDate(Date start, Date end) {
+    public List<Provider> findByDate(Date start, Date end,int id) {
         RowMapper<Provider> rowMapper = new ProviderRowMapper();
         String sql1 = "set @start = ?";
-        jdbcTemplate.query(sql1, rowMapper, start);
+        jdbcTemplate.update(sql1, start);
         String sql2 = "set @birth = (select birthday from children where id = ?)";
         String sql3 = "set @age = timestampdiff(MONTH,@birth,@start)";
         String sql4 = "create table tmp select provider, count(provider) as c from registration where start <= @start and end >= @start group by provider";
         String sql5 = "create table enrolled select id, name, capacity, minAge, maxAge, ifnull(c,0) as e from providers left join tmp on providers.id = tmp.provider";
         String sql6 = "drop table tmp";
         String sql7 = "select * from enrolled where e < capacity and minAge <= @age;\n";
+        List<Provider> result = jdbcTemplate.query(sql7, rowMapper);
         String sql8 = "drop table enrolled";
-        return jdbcTemplate.query(sql8, rowMapper, start);
+        return result;
     }
 
     public void save(Provider p) {

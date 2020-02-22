@@ -45,6 +45,12 @@ public class ChildController {
         return result;
     }
 
+    @GetMapping(params = {"id"})
+    public Child findbyId(@RequestParam(value = "id") int id) {
+        Child c = childDAO.findById(id);
+        return c;
+    }
+
     @PutMapping
     public int update(@RequestBody Child child) {
         return childDAO.update(child);

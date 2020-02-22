@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import edu.lawrence.daycare.data.*;
+import java.sql.Date;
 
 @RestController
 @RequestMapping("/provider")
@@ -48,6 +49,12 @@ private ProviderDAO providerDAO;
         } catch(Exception ex) {
             ex.printStackTrace();
         }
+        return result;
+    }
+    @GetMapping(params={"start","end","id"})
+    public List<Provider> providersByDate(@RequestParam Date start,@RequestParam Date end,@RequestParam int id) {
+        List<Provider> result = new ArrayList<Provider>();
+        result = providerDAO.findByDate(start,end,id);;
         return result;
     }
 

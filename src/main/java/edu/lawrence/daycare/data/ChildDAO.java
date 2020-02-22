@@ -30,6 +30,12 @@ public class ChildDAO {
         RowMapper<Child> rowMapper = new ChildRowMapper();
         return jdbcTemplate.query(sql, rowMapper, id);
     }
+    public Child findById(int id) {
+        String sql =  "SELECT * FROM children WHERE id=?";
+        RowMapper<Child> rowMapper = new ChildRowMapper();
+        return jdbcTemplate.queryForObject(sql, rowMapper, id);
+    }
+    
 
     public int save(Child c) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
